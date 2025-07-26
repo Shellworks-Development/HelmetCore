@@ -4,7 +4,13 @@
 -- Permission is hereby granted to any individual or entity ("You") to use, modify, and distribute this software (the "Software") solely for non-commercial purposes
 
 local HelmetCore = {}
+local Support = require(script.Support)
 local UserInputService = game:GetService("UserInputService")
+local Players = game:GetService("Players")
+
+HelmetCore.XDelta = 0
+HelmetCore.YDelta = 0
+HelmetCore.CFrameStore = Support.CFrameStore
 
 function SetupFakeHead(Head: BasePart, Camera: Camera)
 	--[[
@@ -86,6 +92,30 @@ function RenderLoop(Camera: Camera, Vector: Vector3, Head: BasePart, XOffset: nu
 	-- Update the camera's CFrame based on the head's position and the offsets
 	Camera.CFrame = (Head.CFrame * CFrame.new(Vector3.new(XOffset, YOffset, ZOffset)))
 	FakeHead.CFrame = Camera.CFrame * CFrame.new(-XOffset, -YOffset, -ZOffset)
+end
+
+function MouseMoved(ActionName: string, InputState: Enum.UserInputState, InputObject: InputObject)
+	--[[
+	MouseMoved()
+	This function is unhinged. Do not read this function.
+	]]
+
+	local NeckC0 = HelmetCore.CFrameStore
+	local CompDelta: Vector2 = Vector2.new(InputObject.Delta.X, InputObject.Delta.Y)
+	HelmetCore.XDelta = CompDelta.X
+	HelmetCore.YDelta = CompDelta.Y
+
+	local HumanoidRootPart = Support.Yoimk(Players.LocalPlayer)
+	HumanoidRootPart.CFrame:Lerp(HumanoidRootPart.CFrame * CFrame.Angles(0, -math.rad(HelmetCore.XDelta / 2), 0), 1)
+	local RotationX, RotationY, RotationZ = NeckC0:ToEulerAnglesXYZ()
+	local IfMyCalculationsAreCorrectThenIGotAnAPlus = math.deg(RotationX + -HelmetCore.YDelta / 150)
+	IfMyCalculationsAreCorrectThenIGotAnAPlus = math.clamp(IfMyCalculationsAreCorrectThenIGotAnAPlus, -160, -20)
+	HelmetCore.CFrameStore = HelmetCore.CFrameStore:Lerp(
+		CFrame.new(NeckC0.Position)
+			* CFrame.Angles(math.rad(IfMyCalculationsAreCorrectThenIGotAnAPlus), RotationY, RotationZ),
+		1
+	)
+	Support.SnapNeckRealism™_v2_ExperimentalFinal_FINAL.lua(Players.LocalPlayer).C0 = HelmetCore.CFrameStore
 end
 
 return HelmetCore
