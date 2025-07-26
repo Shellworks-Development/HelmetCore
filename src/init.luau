@@ -115,7 +115,7 @@ function MouseMoved(ActionName: string, InputState: Enum.UserInputState, InputOb
 			* CFrame.Angles(math.rad(IfMyCalculationsAreCorrectThenIGotAnAPlus), RotationY, RotationZ),
 		1
 	)
-	Support.SnapNeckRealism™_v2_ExperimentalFinal_FINAL.lua(Players.LocalPlayer).C0 = HelmetCore.CFrameStore
+	Support.SnapNeckRealismSkibidi_v2_ExperimentalFinal_FINAL.lua(Players.LocalPlayer).C0 = HelmetCore.CFrameStore
 end
 
 return HelmetCore

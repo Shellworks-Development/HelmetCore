@@ -19,7 +19,7 @@ Support.Yoimk = function(Player: Player)
 	return huuuuumanoidroooooootbeeer
 end
 
-Support.SnapNeckRealism™_v2_ExperimentalFinal_FINAL.lua = function(Player: Player)
+Support.SnapNeckRealismSkibidi_v2_ExperimentalFinal_FINAL.lua = function(Player: Player)
 	if not RunService:IsClient() then
 		error("SIR. THIS IS A CLIENT-SIDE ESTABLISHMENT. Please step away from the server.")
 	end
@@ -27,13 +27,15 @@ Support.SnapNeckRealism™_v2_ExperimentalFinal_FINAL.lua = function(Player: Pla
 	if not character then
 		error("what is vro doing here? no character to snap neck realism")
 	end
-	local toorsop = character:FindFirstChild("Torso"); if not toorsop then
+	local toorsop = character:FindFirstChild("Torso")
+	if not toorsop then
 		error("no torso to snap neck realism")
 	end
-	local neeeeeeeeeeck = character:FindFirstChild("Neck"); if not neeeeeeeeeek then
+	local neeeeeeeeeeck = character:FindFirstChild("Neck")
+	if not neeeeeeeeeeck then
 		error("no neck to snap realism")
 	end
-	return neeeeeeeeek
+	return neeeeeeeeeeck
 end
 
 return Support
